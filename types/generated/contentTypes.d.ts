@@ -391,6 +391,10 @@ export interface ApiCategoriaCategoria extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    productos: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::producto.producto'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -401,6 +405,7 @@ export interface ApiCategoriaCategoria extends Struct.CollectionTypeSchema {
 export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
   collectionName: 'productos';
   info: {
+    description: '';
     displayName: 'productos';
     pluralName: 'productos';
     singularName: 'producto';
@@ -410,6 +415,10 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
   };
   attributes: {
     cantidad_stock: Schema.Attribute.Integer;
+    categorias: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::categoria.categoria'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -422,6 +431,10 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nombre: Schema.Attribute.String & Schema.Attribute.Required;
     precio: Schema.Attribute.Decimal;
+    proveedores: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::proveedore.proveedore'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -455,6 +468,7 @@ export interface ApiProveedoreProveedore extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nombre: Schema.Attribute.String & Schema.Attribute.Required;
     nombre_contacto: Schema.Attribute.String & Schema.Attribute.Required;
+    producto: Schema.Attribute.Relation<'manyToOne', 'api::producto.producto'>;
     publishedAt: Schema.Attribute.DateTime;
     telefono: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;

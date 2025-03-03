@@ -16,6 +16,12 @@
     },
     "descripcion": {
       "type": "text"
+    },
+    "productos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::producto.producto",
+      "mappedBy": "categorias"
     }
   }
 }

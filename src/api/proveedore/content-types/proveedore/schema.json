@@ -29,6 +29,12 @@
     "nombre_contacto": {
       "type": "string",
       "required": true
+    },
+    "producto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::producto.producto",
+      "inversedBy": "proveedores"
     }
   }
 }

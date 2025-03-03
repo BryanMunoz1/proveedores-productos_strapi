@@ -4,7 +4,8 @@
   "info": {
     "singularName": "producto",
     "pluralName": "productos",
-    "displayName": "productos"
+    "displayName": "productos",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,18 @@
     },
     "cantidad_stock": {
       "type": "integer"
+    },
+    "proveedores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::proveedore.proveedore",
+      "mappedBy": "producto"
+    },
+    "categorias": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::categoria.categoria",
+      "inversedBy": "productos"
     }
   }
 }
